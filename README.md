@@ -1,4 +1,4 @@
-# Challenges from Advent of Code 2020
+# Challenges from Advent of Code
 
 You can find all challenges [here](https://adventofcode.com/).
 
