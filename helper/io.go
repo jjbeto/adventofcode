@@ -8,8 +8,8 @@ import (
 	"strconv"
 )
 
-func ReadLines(year, filename string) []string {
-	_filename, _ := filepath.Abs(fmt.Sprintf("%v/%v", year, filename))
+func ReadLines(folder, filename string) []string {
+	_filename, _ := filepath.Abs(fmt.Sprintf("%v/%v", folder, filename))
 	file, err := os.Open(_filename)
 	if err != nil {
 		panic(err)
