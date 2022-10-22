@@ -27,8 +27,8 @@ func ReadLines(year, filename string) []string {
 	return lines
 }
 
-func ReadNumbers(year, filename string, base int) []int64 {
-	textLines := ReadLines(year, filename)
+func ReadNumbers(folder, filename string, base int) []int64 {
+	textLines := ReadLines(folder, filename)
 	var lines []int64
 	for _, line := range textLines {
 		i, err := strconv.ParseInt(line, base, 0)

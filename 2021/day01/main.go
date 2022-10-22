@@ -21,7 +21,7 @@ func part2(numbers []int64) int64 {
 }
 
 func main() {
-	numbers := helper.ReadNumbers("2021", "day01.data", 10)
+	numbers := helper.ReadNumbers("2021/day01", "data.txt", 10)
 	fmt.Println("part1", part1(numbers))
 	fmt.Println("part2", part2(numbers))
 }
