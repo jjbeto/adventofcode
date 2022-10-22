@@ -17,15 +17,11 @@ func part1(numbers []int64) int64 {
 }
 
 func part2(numbers []int64) int64 {
-	var rolling []int64
-	for i := 0; i <= len(numbers)-2; i++ {
-		rolling = append(rolling, helper.Sum(numbers[i:i+3]))
-	}
-	return part1(rolling)
+	return part1(helper.SlidingWindow(helper.Sum[int64], numbers, 3))
 }
 
 func main() {
 	numbers := helper.ReadNumbers("2021", "day01.data", 10)
-	fmt.Println(part1(numbers))
-	fmt.Println(part2(numbers))
+	fmt.Println("part1", part1(numbers))
+	fmt.Println("part2", part2(numbers))
 }
