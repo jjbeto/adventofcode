@@ -2,6 +2,7 @@ package aoc
 
 import "fmt"
 
+// Heap https://en.wikipedia.org/wiki/Heap_(data_structure)
 type Heap[T Comparable] struct {
 	array []T
 	max   bool
