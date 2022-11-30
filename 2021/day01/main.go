@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jjbeto/adventofcode/helper"
+	"github.com/jjbeto/adventofcode/aoc"
 )
 
 func part1(numbers []int64) int64 {
@@ -17,11 +17,11 @@ func part1(numbers []int64) int64 {
 }
 
 func part2(numbers []int64) int64 {
-	return part1(helper.SlidingWindow(helper.Sum[int64], numbers, 3))
+	return part1(aoc.SlidingWindow(aoc.Sum[int64], numbers, 3))
 }
 
 func main() {
-	numbers := helper.ReadNumbers("2021/day01", "data.txt", 10)
+	numbers := aoc.ReadLines("2021/day01", "data.txt", aoc.ToIntBase10)
 	fmt.Println("part1", part1(numbers))
 	fmt.Println("part2", part2(numbers))
 }

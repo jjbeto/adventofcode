@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jjbeto/adventofcode/helper"
+	"github.com/jjbeto/adventofcode/aoc"
 	"strconv"
 	"strings"
 )
@@ -49,7 +49,7 @@ func part2(lines *[]string) int {
 }
 
 func main() {
-	lines := helper.ReadLines("2021/day02", "data.txt")
+	lines := aoc.ReadLines("2021/day02", "data.txt", aoc.ToString)
 	fmt.Println("part1", part1(&lines))
 	fmt.Println("part2", part2(&lines))
 }
