@@ -20,3 +20,10 @@ type (
 		Integer | Float | ~string
 	}
 )
+
+// SortableArray helper struct to allow ease-use of sort.Sort()
+type SortableArray[T Comparable] []T
+
+func (array SortableArray[T]) Len() int           { return len(array) }
+func (array SortableArray[T]) Swap(i, j int)      { array[i], array[j] = array[j], array[i] }
+func (array SortableArray[T]) Less(i, j int) bool { return array[i] < array[j] }
