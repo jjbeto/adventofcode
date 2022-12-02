@@ -98,3 +98,32 @@ func newTransposedMatrix[T any](cols, lines int) [][]T {
 	}
 	return matrix
 }
+
+// IsSubset returns true if the first array is completely contained in the second array.
+func IsSubset[T Comparable](first, second []T) bool {
+	set := make(map[T]int)
+	for _, value := range second {
+		set[value] += 1
+	}
+
+	for _, value := range first {
+		if count, found := set[value]; !found {
+			return false
+		} else if count < 1 {
+			return false
+		} else {
+			set[value] = count - 1
+		}
+	}
+
+	return true
+}
+
+func Contains[T Comparable](s []T, elem T) bool {
+	for _, each := range s {
+		if each == elem {
+			return true
+		}
+	}
+	return false
+}
