@@ -32,6 +32,19 @@ func Sum[T Number](array []T) T {
 	return sum
 }
 
+// Summation calculates ∑ of a given number
+func Summation(value int) int {
+	return (value * (value + 1)) / 2
+}
+
+func Abs(value int) int {
+	if value < 0 {
+		return value * -1
+	} else {
+		return value
+	}
+}
+
 func SlidingWindow[T Number](aggregator func([]T) T, numbers []T, window int) []T {
 	var sliding []T
 	for i := 0; i <= len(numbers)-(window-1); i++ {
