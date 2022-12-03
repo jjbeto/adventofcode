@@ -1,5 +1,10 @@
 package aoc
 
+import (
+	"sort"
+	"strings"
+)
+
 func ArrayEq[T Comparable](a, b []T) bool {
 	if len(a) != len(b) {
 		return false
@@ -35,6 +40,21 @@ func Sum[T Number](array []T) T {
 // Summation calculates ∑ of a given number
 func Summation(value int) int {
 	return (value * (value + 1)) / 2
+}
+
+func Index[T Comparable](array []T, elem T) int {
+	for i, val := range array {
+		if val == elem {
+			return i
+		}
+	}
+	return -1
+}
+
+func SortString(w string) string {
+	s := strings.Split(w, "")
+	sort.Strings(s)
+	return strings.Join(s, "")
 }
 
 func Abs(value int) int {
