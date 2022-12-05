@@ -95,6 +95,15 @@ func RotateMatrix[T any](matrix [][]T, angle int) [][]T {
 	return matrix
 }
 
+func Reverse(array []string) []string {
+	copyArray := append([]string(nil), array...)
+	last := len(copyArray) - 1
+	for i := 0; i < len(copyArray)/2; i++ {
+		copyArray[i], copyArray[last-i] = copyArray[last-i], copyArray[i]
+	}
+	return copyArray
+}
+
 // ReverseMatrix
 // 1 2 3     7 8 9
 // 4 5 6 --> 4 5 6
