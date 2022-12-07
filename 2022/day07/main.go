@@ -20,7 +20,7 @@ func calculateSummary(lines []string) map[string]int {
 			if stack.IsEmpty() {
 				stack.Push(curr)
 			} else {
-				stack.Push(strings.Join(stack, ".") + "." + lines[i][5:])
+				stack.Push(strings.Join(stack, ".") + "." + curr)
 			}
 			continue
 		}
