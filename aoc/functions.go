@@ -57,6 +57,17 @@ func SortString(w string) string {
 	return strings.Join(s, "")
 }
 
+func Sign(value int) int {
+	switch {
+	case value < 0:
+		return -1
+	case value > 0:
+		return 1
+	default:
+		return 0
+	}
+}
+
 func Abs(value int) int {
 	if value < 0 {
 		return value * -1
