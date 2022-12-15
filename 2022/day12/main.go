@@ -43,7 +43,7 @@ func part1(shortest bool) int {
 		visited[curr] = true
 		toVisit = toVisit[1:]
 
-		if curr.Equals(end) {
+		if curr == end {
 			break
 		}
 

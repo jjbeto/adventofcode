@@ -48,7 +48,3 @@ func (c *Coordinate) Adjacent(xLimit, yLimit int) (coords []Coordinate) {
 	}
 	return
 }
-
-func (c *Coordinate) Equals(other Coordinate) bool {
-	return c.X == other.X && c.Y == other.Y
-}

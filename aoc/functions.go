@@ -183,7 +183,7 @@ func Contains[T Comparable](s []T, elem T) bool {
 
 func ContainsCoordinate(s []Coordinate, elem Coordinate) bool {
 	for _, each := range s {
-		if each.Equals(elem) {
+		if each == elem {
 			return true
 		}
 	}
