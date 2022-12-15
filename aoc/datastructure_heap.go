@@ -3,13 +3,13 @@ package aoc
 import "fmt"
 
 // Heap https://en.wikipedia.org/wiki/Heap_(data_structure)
-type Heap[T Comparable] struct {
+type Heap[T any] struct {
 	array []T
-	max   bool
+	check func(T, T) bool
 }
 
-func NewHeap[T Comparable](array []T, isMax bool) *Heap[T] {
-	return &Heap[T]{array: array, max: isMax}
+func NewHeap[T any](check func(T, T) bool) *Heap[T] {
+	return &Heap[T]{array: []T{}, check: check}
 }
 
 func (h *Heap[T]) Insert(element T) {
@@ -63,13 +63,6 @@ func (h *Heap[T]) heapfy(current int) {
 			return
 		}
 	}
-}
-
-func (h *Heap[T]) check(current, next T) bool {
-	if h.max {
-		return current > next
-	}
-	return current < next
 }
 
 func (h *Heap[T]) swap(a, b int) {

@@ -76,10 +76,10 @@ func Abs(value int) int {
 	}
 }
 
-func SlidingWindow[T Number](aggregator func([]T) T, numbers []T, window int) []T {
-	var sliding []T
-	for i := 0; i <= len(numbers)-(window-1); i++ {
-		sliding = append(sliding, aggregator(numbers[i:i+window]))
+func SlidingWindow(aggregator func(string) string, text string, window int) []string {
+	var sliding []string
+	for i := 0; i <= len(text)-(window-1); i++ {
+		sliding = append(sliding, aggregator(text[i:i+window]))
 	}
 	return sliding
 }
@@ -175,6 +175,15 @@ func IsSubset[T Comparable](first, second []T) bool {
 func Contains[T Comparable](s []T, elem T) bool {
 	for _, each := range s {
 		if each == elem {
+			return true
+		}
+	}
+	return false
+}
+
+func ContainsCoordinate(s []Coordinate, elem Coordinate) bool {
+	for _, each := range s {
+		if each.Equals(elem) {
 			return true
 		}
 	}
