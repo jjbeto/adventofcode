@@ -12,7 +12,7 @@ var (
 	yLimit int
 )
 
-func part1() int {
+func part1(shortest bool) int {
 	var start, end aoc.Coordinate
 	heightMap := make(map[aoc.Coordinate]rune)
 	for x, row := range lines {
@@ -51,7 +51,11 @@ func part1() int {
 			if !visited[next] && heightMap[next]-heightMap[curr] <= 1 {
 				if distance[next] == 0 {
 					toVisit = append(toVisit, next)
-					distance[next] = distance[curr] + 1
+					if shortest && heightMap[next] == 'a' {
+						distance[next] = distance[curr]
+					} else {
+						distance[next] = distance[curr] + 1
+					}
 				}
 			}
 		}
@@ -67,6 +71,6 @@ func main() {
 	lines = aoc.ReadLines("2022/day12", "data.txt", aoc.ToString)
 	xLimit, yLimit = len(lines), len(lines[0])
 
-	fmt.Println("part1", part1())
-	//fmt.Println("part2", part2(lowPoints))
+	fmt.Println("part1", part1(false))
+	fmt.Println("part2", part1(true))
 }
