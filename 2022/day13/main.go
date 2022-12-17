@@ -112,5 +112,5 @@ func main() {
 	lines = aoc.ReadLines("2022/day13", "data.txt", aoc.ToString)
 
 	fmt.Println("part1", part1())
-	fmt.Println("part2", part2()) // 24477
+	fmt.Println("part2", part2())
 }
