@@ -22,3 +22,14 @@ func (s *Stack[T]) Pop() T {
 		return elem
 	}
 }
+
+func (s *Stack[T]) Peek() T {
+	if s.IsEmpty() {
+		var empty T
+		return empty
+	} else {
+		i := len(*s) - 1
+		elem := (*s)[i]
+		return elem
+	}
+}

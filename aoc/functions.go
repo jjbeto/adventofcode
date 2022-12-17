@@ -1,6 +1,7 @@
 package aoc
 
 import (
+	"reflect"
 	"sort"
 	"strings"
 )
@@ -42,9 +43,9 @@ func Summation(value int) int {
 	return (value * (value + 1)) / 2
 }
 
-func Index[T Comparable](array []T, elem T) int {
+func Index[T any](array []T, elem T) int {
 	for i, val := range array {
-		if val == elem {
+		if reflect.DeepEqual(val, elem) {
 			return i
 		}
 	}
