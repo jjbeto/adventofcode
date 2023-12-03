@@ -82,3 +82,35 @@ def extract_int(template, text):
 def extract_string(template, text):
     seq = SequenceMatcher(None, template, text, True)
     return [text[c:d] for tag, a, b, c, d in seq.get_opcodes() if tag == 'replace']
+
+
+def positional_squared_graph(n: int):
+    """
+    returns a graph dict of valid node addresses with neighbours for a squared node matrix
+    """
+    g = {}
+    for x in range(n):
+        for y in range(n):
+            """
+            a(x-1,y-1), b(x-1,y), c(x-1,y+1)
+            d(x  ,y-1),           e(x  ,y+1)
+            f(x+1,y-1), g(x+1,y), h(x+1,y+1)
+            """
+            g[(x, y)] = []
+            if x > 0 and y > 0:
+                g[(x, y)].append((x - 1, y - 1))  # a
+            if x > 0:
+                g[(x, y)].append((x - 1, y))  # b
+            if x > 0 and y < n - 1:
+                g[(x, y)].append((x - 1, y + 1))  # c
+            if y > 0:
+                g[(x, y)].append((x, y - 1))  # d
+            if y < n - 1:
+                g[(x, y)].append((x, y + 1))  # e
+            if x < n - 1 and y > 0:
+                g[(x, y)].append((x + 1, y - 1))  # f
+            if x < n - 1:
+                g[(x, y)].append((x + 1, y))  # g
+            if x < n - 1 and y < n - 1:
+                g[(x, y)].append((x + 1, y + 1))  # h
+    return g
