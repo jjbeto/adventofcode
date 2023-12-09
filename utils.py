@@ -84,13 +84,15 @@ def extract_string(template, text):
     return [text[c:d] for tag, a, b, c, d in seq.get_opcodes() if tag == 'replace']
 
 
-def positional_squared_graph(n: int):
+def positional_squared_graph(heigh: int, width: int = None):
     """
     returns a graph dict of valid node addresses with neighbours for a squared node matrix
     """
+    if not width:
+        width = heigh
     g = {}
-    for x in range(n):
-        for y in range(n):
+    for x in range(heigh):
+        for y in range(width):
             """
             a(x-1,y-1), b(x-1,y), c(x-1,y+1)
             d(x  ,y-1),           e(x  ,y+1)
@@ -101,16 +103,58 @@ def positional_squared_graph(n: int):
                 g[(x, y)].append((x - 1, y - 1))  # a
             if x > 0:
                 g[(x, y)].append((x - 1, y))  # b
-            if x > 0 and y < n - 1:
+            if x > 0 and y < width - 1:
                 g[(x, y)].append((x - 1, y + 1))  # c
             if y > 0:
                 g[(x, y)].append((x, y - 1))  # d
-            if y < n - 1:
+            if y < width - 1:
                 g[(x, y)].append((x, y + 1))  # e
-            if x < n - 1 and y > 0:
+            if x < heigh - 1 and y > 0:
                 g[(x, y)].append((x + 1, y - 1))  # f
-            if x < n - 1:
+            if x < heigh - 1:
                 g[(x, y)].append((x + 1, y))  # g
-            if x < n - 1 and y < n - 1:
+            if x < heigh - 1 and y < width - 1:
                 g[(x, y)].append((x + 1, y + 1))  # h
     return g
+
+
+def to_coord(text: str, sep=None):
+    """
+    usage:
+    m1 = to_coord("a b c\nd e f", " ")
+    m2 = to_coord("abc\ndef")
+    returns a dict with a coord of each elem
+    """
+    matrix = {}
+    for x, line in enumerate(text.splitlines()):
+        if sep:
+            cols = line.split(sep)
+        else:
+            cols = [i for i in line]
+        for y, col in enumerate(cols):
+            matrix[(x, y)] = col
+    return matrix
+
+
+def text_to_matrix(text: str, sep=None):
+    """turns a pure text into a matrix (list of lists), provide separator to split elements."""
+    matrix = []
+    for x, line in enumerate(text.splitlines()):
+        if sep:
+            cols = line.split(sep)
+        else:
+            cols = [i for i in line]
+        matrix.append(cols)
+    return matrix
+
+
+def rotate_matrix_clockwise(m):
+    """rotate matrix (list of lists) to the right"""
+    rotation = list(zip(*reversed(m)))
+    return [list(elem) for elem in rotation]
+
+
+def rotate_matrix_anticlockwise(m):
+    """rotate matrix (list of lists) to the left"""
+    rotation = list(zip(*reversed(m)))
+    return [list(elem)[::-1] for elem in rotation][::-1]
