@@ -1,3 +1,4 @@
 jupyter
 regex
 advent-of-code-data
+matplotlib

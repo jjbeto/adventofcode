@@ -158,3 +158,7 @@ def rotate_matrix_anticlockwise(m):
     """rotate matrix (list of lists) to the left"""
     rotation = list(zip(*reversed(m)))
     return [list(elem)[::-1] for elem in rotation][::-1]
+
+
+def sum_tuples(a, b):
+    return tuple([sum(x) for x in zip(a, b)])
