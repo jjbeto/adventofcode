@@ -148,6 +148,14 @@ def text_to_matrix(text: str, sep=None):
     return matrix
 
 
+def matrix_to_text(matrix):
+    # t = ''
+    # for line in matrix:
+    #     t += ''.join(line + ['\n'])
+    # return t
+    return '\n'.join([''.join(line) for line in matrix])
+
+
 def rotate_matrix_clockwise(m):
     """rotate matrix (list of lists) to the right"""
     rotation = list(zip(*reversed(m)))
@@ -162,3 +170,11 @@ def rotate_matrix_anticlockwise(m):
 
 def sum_tuples(a, b):
     return tuple([sum(x) for x in zip(a, b)])
+
+
+def find_all_in_str(p, s):
+    """Yields all the positions of the pattern p in the string s. No regex."""
+    i = s.find(p)
+    while i != -1:
+        yield i
+        i = s.find(p, i + 1)
