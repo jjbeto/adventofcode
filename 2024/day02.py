@@ -39,5 +39,4 @@ def part2():
 
 
 print(f'Answer 1: {part1()}')
-# 566
 print(f'Answer 2: {part2()}')
