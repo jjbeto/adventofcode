@@ -1,3 +1,4 @@
+from collections import Counter
 from difflib import SequenceMatcher
 from itertools import islice
 
@@ -130,10 +131,61 @@ def to_coord(text: str, sep=None):
         if sep:
             cols = line.split(sep)
         else:
-            cols = [i for i in line]
+            cols = list(line)
         for y, col in enumerate(cols):
             matrix[(x, y)] = col
     return matrix
+
+
+def reverse_text(text):
+    """reverse each line of a text and return"""
+    return '\n'.join([line[::-1] for line in text.splitlines()])
+
+
+def get_columns_from_text(text: str, sep=None):
+    """return all columns (only values, removing separators if any) as a list of strings"""
+    lines = [line.split(sep) if sep else list(line) for line in text.splitlines()]
+    col_num = len(lines[0])
+    cols = [[] for _ in range(col_num)]
+    for i in range(col_num):
+        for line in lines:
+            cols[i] += line[i]
+    if not sep:
+        sep = ''
+    return [sep.join(col) for col in cols]
+
+
+def get_diagonals_from_text(text: str, sep=None):
+    """
+    returns all "right-down" diagonal lines from test
+
+    example:
+    text   = 12345
+             67890
+    result = [6, 17, 28, 39, 40, 5]
+    """
+    lines = text.splitlines()
+    if sep:
+        col_num = len(lines[0].split(sep))
+    else:
+        col_num = len(lines[0])
+    row_num = len(lines)
+
+    coords = [
+                 [row * col_num + row + col for row in range(min(row_num, col_num - col))]
+                 for col in range(col_num - 1)
+             ] + [
+                 [(row + col) * col_num + col for col in range(min(row_num - row, col_num))]
+                 for row in range(1, row_num - 1)
+             ]
+
+    letter_array = []
+    for line in lines:
+        if sep:
+            letter_array += line.split(sep)
+        else:
+            letter_array += list(line)
+    return ["".join(map(lambda i: letter_array[i], positions)) for positions in coords]
 
 
 def text_to_matrix(text: str, sep=None):
@@ -178,3 +230,7 @@ def find_all_in_str(p, s):
     while i != -1:
         yield i
         i = s.find(p, i + 1)
+
+
+def replace_str_index(text, index=0, replacement=''):
+    return f'{text[:index]}{replacement}{text[index + len(replacement):]}'
